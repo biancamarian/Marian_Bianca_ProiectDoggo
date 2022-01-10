@@ -1,0 +1,115 @@
+﻿@model ProiectDoggo.Models.ShopViewModels.KennelIndexData
+
+@{
+    ViewData["Title"] = "Canise";
+}
+
+<h1>Canise</h1>
+
+<p>
+    <a asp-action="Create">Adauga Canisa noua</a>
+</p>
+<<table class="table">
+    <thead>
+        <tr>
+            <th>Canisa</th>
+            <th>Adresa</th>
+            <th>Doggo - Culoare</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Kennels)
+        {
+            string selectedRow = "";
+            if (item.KennelID == (int?)ViewData["KennelID"])
+            {
+                selectedRow = "success";
+            }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.KennelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            
+
+            <td>
+                @{
+                    foreach (var doggo in item.KennelDogs)
+                    {
+                        @doggo.Doggo.Breed @:- @doggo.Doggo.Color <br />
+                    }
+                }
+            </td>
+
+            <td>
+                <a asp-action="Index" asp-route-id="@item.KennelID">Selecteaza</a> |
+                <a asp-action="Edit" asp-route-id="@item.KennelID">Editeaza</a> |
+                <a asp-action="Details" asp-route-id="@item.KennelID">Detalii</a> |
+                <a asp-action="Delete" asp-route-id="@item.KennelID">Sterge</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.Doggoes != null)
+{
+    <h3>Cainii care apartin de canisa selectata</h3>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Rasa</th>
+            <th>Culoare</th>
+            <th>Pret</th>
+        </tr>
+        @foreach (var item in Model.Doggoes)
+        {
+            string selectedRow = "";
+            if (item.DoggoID == (int?)ViewData["DoggoID"])
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { doggoID = item.DoggoID })
+                </td>
+                <td>
+                    @item.Breed
+                </td>
+                <td>
+                    @item.Color
+                </td>
+                <td>
+                    @item.Price
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+@if (Model.Orders != null)
+{
+    <h3>
+        Clienti
+    </h3>
+    <table class="table">
+        <tr>
+            <th>Nume</th>
+            <th> Data Comanda</th>
+        </tr>
+        @foreach (var item in Model.Orders)
+        {
+            <tr>
+                <td>
+                    @item.Customer.Name
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+            </tr>
+        }
+    </table>
+}

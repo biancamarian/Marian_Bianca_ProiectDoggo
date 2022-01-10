@@ -1,0 +1,66 @@
+﻿@model ProiectDoggo.Models.Doggo
+
+@{
+    ViewData["Title"] = "Detalii";
+}
+
+<h1>Informatii</h1>
+
+<div>
+    <h4>Doggo</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Breed)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Breed)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt class="col-sm-2">
+            Canisa
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>Nume</th>
+                    <th>Adresa</th>
+                </tr>
+                @foreach (var item in Model.KennelDoggoes)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Kennel.KennelName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Kennel.Address)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.DoggoID">Editare</a> |
+    <a asp-action="Index">Inapoi la lista</a>
+</div>

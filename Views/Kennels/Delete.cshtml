@@ -1,0 +1,33 @@
+﻿@model ProiectDoggo.Models.Kennel
+
+@{
+    ViewData["Title"] = "Stergere";
+}
+
+<h1>Sterge</h1>
+
+<h3>Esti sigur?</h3>
+<div>
+    <h4>Canisa</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KennelName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KennelName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="KennelID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Inapoi la lista</a>
+    </form>
+</div>

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ProiectDoggo.Models.ShopViewModels.OrderGroup>
+@{
+    ViewData["Title"] = "Statistica Comenzi";
+}
+<h2>Statistica Comenzi</h2>
+<table class="table">
+    <tr>
+        <th>
+            Data Comenzii
+        </th>
+        <th>
+            Caini
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @item.DoggoCount
+            </td>
+        </tr>
+    }
+</table>
